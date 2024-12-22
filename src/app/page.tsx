@@ -180,7 +180,7 @@ export default function Home() {
             <EventImage>
               {/* Next Image Component */}
               <Image
-                src="/Capa-Gluhwein.webp"
+                src="/capa-confraternizacao.webp"
                 alt=""
                 width={455}
                 height={230}
@@ -209,7 +209,7 @@ export default function Home() {
             <EventImage>
               {/* Next Image Component */}
               <Image
-                src="/Capa-Gluhwein.webp"
+                src="/capa-apresentacao.webp"
                 alt=""
                 width={455}
                 height={230}
