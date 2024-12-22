@@ -1,31 +1,8 @@
 "use client";
-import { faker } from "@faker-js/faker";
+import { useEffect, useState } from "react";
+import { getEvents, Event } from "../mock/eventData";
 import Image from "next/image";
 import styled, { css } from "styled-components";
-
-// interface Event {
-//   _id: string;
-//   name: string;
-//   description: string;
-//   date: string;
-//   location: string;
-//   price: string;
-//   image: string;
-//   tickets: number;
-// }
-
-// function getEvents(): Event[] {
-//   return Array.from({ length: 10 }, () => ({
-//     _id: faker.string.uuid(),
-//     name: faker.commerce.productName(),
-//     description: faker.commerce.productDescription(),
-//     date: faker.date.future().getDay() + "/" + faker.date.future().getMonth(),
-//     location: faker.location.city(),
-//     price: faker.commerce.price(),
-//     image: faker.image.url(),
-//     tickets: faker.number.int({ min: 0, max: 100 }),
-//   }));
-// }
 
 // Styled Components
 
@@ -83,6 +60,7 @@ const EventDiv = styled.div`
   gap: 3rem;
   flex: calc(33.33% - 3rem);
   flex-wrap: wrap;
+  padding: 0 1.5rem;
 `;
 
 const EventCard = styled.div`
@@ -95,11 +73,12 @@ const EventCard = styled.div`
 `;
 
 const EventImage = styled.div`
+  position: relative;
   border-radius: 0 0 13px 13px;
-  box-shadow: 0px 5px 10px hsl(0, 0%, 15%);
-  max-height: 230px;
-  width: 100%;
-  padding: 0;
+  overflow: hidden;
+  box-shadow: 0px 5px 10px hsl(0, 0%, 0%, 25%);
+  width: 455px;
+  height: 230px;
   margin-bottom: 1.5rem;
 `;
 
@@ -134,6 +113,23 @@ const IconText = styled.p`
 `;
 
 export default function Home() {
+  const [events, setEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      setLoading(true);
+      const data = await new Promise<Event[]>((resolve) => {
+        setTimeout(() => {
+          resolve(getEvents()), 1000;
+        });
+      });
+      setEvents(data);
+      setLoading(false);
+    };
+    fetchEvents();
+  }, []);
+
   return (
     <HomePage>
       <Content>
@@ -147,93 +143,41 @@ export default function Home() {
           <EventTitle>E pavimente seu futuro educacional</EventTitle>
         </TextDiv>
         <EventDiv>
-          <EventCard>
-            <EventImage>
-              {/* Next Image Component */}
-              <Image
-                src="/Capa-Gluhwein.webp"
-                alt=""
-                width={455}
-                height={230}
-              />
-            </EventImage>
-            <EventCardInfo>
-              <EventCardTitle>TitleLorem 001</EventCardTitle>
-              <IconsDiv>
-                <IconDiv>
-                  <Image
-                    src="/Calendar icon.svg"
-                    alt=""
-                    width={38}
-                    height={44}
-                  />
-                  <IconText>16/08</IconText>
-                </IconDiv>
-                <IconDiv>
-                  <Image src="/User Icon.svg" alt="" width={38} height={38} />
-                  <IconText>João Carlos</IconText>
-                </IconDiv>
-              </IconsDiv>
-            </EventCardInfo>
-          </EventCard>
-          <EventCard>
-            <EventImage>
-              {/* Next Image Component */}
-              <Image
-                src="/capa-confraternizacao.webp"
-                alt=""
-                width={455}
-                height={230}
-              />
-            </EventImage>
-            <EventCardInfo>
-              <EventCardTitle>TitleLorem 001</EventCardTitle>
-              <IconsDiv>
-                <IconDiv>
-                  <Image
-                    src="/Calendar icon.svg"
-                    alt=""
-                    width={38}
-                    height={44}
-                  />
-                  <IconText>16/08</IconText>
-                </IconDiv>
-                <IconDiv>
-                  <Image src="/User Icon.svg" alt="" width={38} height={38} />
-                  <IconText>João Carlos</IconText>
-                </IconDiv>
-              </IconsDiv>
-            </EventCardInfo>
-          </EventCard>
-          <EventCard>
-            <EventImage>
-              {/* Next Image Component */}
-              <Image
-                src="/capa-apresentacao.webp"
-                alt=""
-                width={455}
-                height={230}
-              />
-            </EventImage>
-            <EventCardInfo>
-              <EventCardTitle>TitleLorem 001</EventCardTitle>
-              <IconsDiv>
-                <IconDiv>
-                  <Image
-                    src="/Calendar icon.svg"
-                    alt=""
-                    width={38}
-                    height={44}
-                  />
-                  <IconText>16/08</IconText>
-                </IconDiv>
-                <IconDiv>
-                  <Image src="/User Icon.svg" alt="" width={38} height={38} />
-                  <IconText>João Carlos</IconText>
-                </IconDiv>
-              </IconsDiv>
-            </EventCardInfo>
-          </EventCard>
+          {loading ? (
+            <div>Loading...</div>
+          ) : (
+            events.map((event) => (
+              <EventCard key={event._id}>
+                <EventImage>
+                  {/* Next Image Component */}
+                  <Image src={event.image} alt={event.name + " Image"} fill />
+                </EventImage>
+                <EventCardInfo>
+                  <EventCardTitle>{event.name}</EventCardTitle>
+                  <IconsDiv>
+                    <IconDiv>
+                      <Image
+                        src="/Calendar icon.svg"
+                        alt=""
+                        width={38}
+                        height={44}
+                      />
+                      <IconText>{event.date}</IconText>
+                    </IconDiv>
+                    <IconDiv>
+                      <Image
+                        src="/User Icon.svg"
+                        alt=""
+                        width={38}
+                        height={38}
+                      />
+                      <IconText>{event.presenter}</IconText>
+                    </IconDiv>
+                  </IconsDiv>
+                </EventCardInfo>
+              </EventCard>
+            ))
+          )}
         </EventDiv>
       </Content>
     </HomePage>
