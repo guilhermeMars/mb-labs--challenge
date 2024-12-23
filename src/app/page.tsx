@@ -1,8 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
-import { getEvents, Event } from "../mock/eventData";
+import { useEventContext } from "@/context/eventContext";
 import Image from "next/image";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+import Link from "next/link";
 
 // Styled Components
 
@@ -113,22 +114,22 @@ const IconText = styled.p`
 `;
 
 export default function Home() {
-  const [events, setEvents] = useState<Event[]>([]);
+  const { events } = useEventContext();
   const [loading, setLoading] = useState<boolean>(false);
 
-  useEffect(() => {
-    const fetchEvents = async () => {
-      setLoading(true);
-      const data = await new Promise<Event[]>((resolve) => {
-        setTimeout(() => {
-          resolve(getEvents()), 1000;
-        });
-      });
-      setEvents(data);
-      setLoading(false);
-    };
-    fetchEvents();
-  }, []);
+  // useEffect(() => {
+  //   const fetchEvents = async () => {
+  //     setLoading(true);
+  //     const data = await new Promise<Event[]>((resolve) => {
+  //       setTimeout(() => {
+  //         resolve(getEvents()), 1000;
+  //       });
+  //     });
+  //     setEvents(data);
+  //     setLoading(false);
+  //   };
+  //   fetchEvents();
+  // }, []);
 
   return (
     <HomePage>
@@ -147,35 +148,37 @@ export default function Home() {
             <div>Loading...</div>
           ) : (
             events.map((event) => (
-              <EventCard key={event._id}>
-                <EventImage>
-                  {/* Next Image Component */}
-                  <Image src={event.image} alt={event.name + " Image"} fill />
-                </EventImage>
-                <EventCardInfo>
-                  <EventCardTitle>{event.name}</EventCardTitle>
-                  <IconsDiv>
-                    <IconDiv>
-                      <Image
-                        src="/Calendar icon.svg"
-                        alt=""
-                        width={38}
-                        height={44}
-                      />
-                      <IconText>{event.date}</IconText>
-                    </IconDiv>
-                    <IconDiv>
-                      <Image
-                        src="/User Icon.svg"
-                        alt=""
-                        width={38}
-                        height={38}
-                      />
-                      <IconText>{event.presenter}</IconText>
-                    </IconDiv>
-                  </IconsDiv>
-                </EventCardInfo>
-              </EventCard>
+              <Link href={`/event/${event._id}`} passHref key={event._id}>
+                <EventCard>
+                  <EventImage>
+                    {/* Next Image Component */}
+                    <Image src={event.image} alt={event.name + " Image"} fill />
+                  </EventImage>
+                  <EventCardInfo>
+                    <EventCardTitle>{event.name}</EventCardTitle>
+                    <IconsDiv>
+                      <IconDiv>
+                        <Image
+                          src="/Calendar icon.svg"
+                          alt=""
+                          width={38}
+                          height={44}
+                        />
+                        <IconText>{event.date}</IconText>
+                      </IconDiv>
+                      <IconDiv>
+                        <Image
+                          src="/User Icon.svg"
+                          alt=""
+                          width={38}
+                          height={38}
+                        />
+                        <IconText>{event.presenter}</IconText>
+                      </IconDiv>
+                    </IconsDiv>
+                  </EventCardInfo>
+                </EventCard>
+              </Link>
             ))
           )}
         </EventDiv>

@@ -20,7 +20,7 @@ export interface Event {
   tickets: number;
 }
 
-export function getEvents(): Event[] {
+export function fetchEvents(): Event[] {
   return Array.from({ length: 10 }, () => ({
     _id: faker.string.uuid(),
     name: faker.commerce.productName(),

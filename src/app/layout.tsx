@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { EventProvider } from "@/context/eventContext";
 
 const getInter = Inter({
   variable: "--font-geist-sans",
@@ -20,7 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={getInter.className}>{children}</body>
+      <body className={getInter.className}>
+        <EventProvider>{children}</EventProvider>
+      </body>
     </html>
   );
 }
