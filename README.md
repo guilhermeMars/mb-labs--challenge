@@ -11,6 +11,7 @@ The idea is to develop a ticket management system organized by companies and uni
 ## Technologies
 
 - React/Next.js
-- React Icons
+- Formik
 - Styled Components
 - Faker.js
+- React Icons
