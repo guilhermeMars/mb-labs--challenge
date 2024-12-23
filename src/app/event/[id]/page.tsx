@@ -5,10 +5,11 @@ import styled from "styled-components";
 import { use } from "react";
 import { useState } from "react";
 import { useEventContext } from "@/context/eventContext";
+import BuyEventSideCard from "@/components/BuyEventSideCard";
 
 // Styled Components
 
-const EventPageDiv = styled.div`
+const EventPageMain = styled.div`
   background-color: #2d2d2d;
   width: 100%;
   /* Remove later */
@@ -46,10 +47,17 @@ const EventContent = styled.div`
   flex-direction: row;
   gap: 2rem;
   flex-wrap: wrap;
+  width: 80%;
 `;
 
 const EventTabWrapper = styled.div`
   flex: calc(70% - 2rem);
+  width: 100%;
+  height: 100%;
+
+  @media (max-width: 1250px) {
+    flex: calc(60% - 2rem);
+  }
 `;
 
 const EventTabs = styled.div`
@@ -58,19 +66,23 @@ const EventTabs = styled.div`
   gap: 5px;
 `;
 
-const EventTab = styled.button`
-  background-color: hsl(0, 0%, 98%);
+const EventTab = styled.button<{ $active?: boolean }>`
+  font-family: "Inter", sans-serif;
+  background-color: ${(props) =>
+    props.$active ? "#fc04c4" : "hsl(0, 0%, 98%)"};
   padding: 0.5rem 1rem;
   border: 2px solid #fc04c4;
+  font-size: 0.9rem;
   border-radius: 5px;
-  color: hsl(0, 0%, 5%);
-  font-weight: 400;
-  transition: all 0.2s ease-in-out;
+  color: ${(props) => (props.$active ? "hsl(0, 0%, 98%)" : "hsl(0, 0%, 5%)")};
+  font-weight: ${(props) => (props.$active ? 600 : 500)};
+  transition: all 0.4s ease;
 
   &:hover {
     background-color: hsl(313, 97%, 80%);
     font-weight: 600;
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 1.2rem;
+    cursor: pointer;
   }
 `;
 
@@ -78,13 +90,15 @@ const EventInformation = styled.div`
   background-color: hsl(0, 0%, 98%);
   padding: 1rem 2rem;
   border-radius: 5px;
-  border: 2px solid hsl(0, 0%, 5%);
+  border: 1px solid rgba(252, 4, 196, 1);
   color: hsl(0, 0%, 5%);
   font-weight: 400;
   box-shadow: 0px 5px 10px hsl(0, 0%, 0%, 25%);
+  width: 100%;
+  height: 100%;
 `;
 
-const EventMainText = styled.p`
+const EventMainText = styled.div`
   font-size: 1rem;
   color: hsl(0, 0%, 5%);
 `;
@@ -92,57 +106,6 @@ const EventMainText = styled.p`
 const EventLocation = styled.p``;
 
 const EventDate = styled.p``;
-
-const EventBuy = styled.div`
-  background-color: #d9d9d9;
-  flex: calc(30% - 2rem);
-  border-radius: 15px;
-  overflow: hidden;
-`;
-
-const EventImage = styled.div`
-  position: relative;
-  width: 455px;
-  height: 230px;
-  margin-bottom: 1rem;
-`;
-
-const EventBuyContent = styled.div`
-  margin: 0 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;
-
-const EventPrice = styled.p`
-  font-size: 2rem;
-  font-weight: 600;
-  color: hsl(0, 0%, 5%);
-`;
-const EventTickets = styled.p`
-  font-size: 1.2rem;
-  font-weight: 400;
-  color: hsl(0, 0%, 5%);
-`;
-
-const EventBuyButton = styled.button`
-  background: linear-gradient(
-    130deg,
-    rgba(240, 115, 20, 1) 0%,
-    rgba(252, 4, 196, 1) 100%
-  );
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  color: hsl(0, 0%, 5%);
-  font-weight: 600;
-  transition: all 0.2s ease-in-out;
-
-  &:hover {
-    background-color: hsl(313, 97%, 650%);
-    font-weight: 600;
-    padding: 0.5rem 1.5rem;
-  }
-`;
 
 export default function EventPage({
   params,
@@ -160,7 +123,7 @@ export default function EventPage({
   }
 
   return (
-    <EventPageDiv>
+    <EventPageMain>
       <Content>
         <EventTextTitle>
           <EventTitle>{eventData?.name}</EventTitle>
@@ -169,10 +132,16 @@ export default function EventPage({
         <EventContent>
           <EventTabWrapper>
             <EventTabs>
-              <EventTab onClick={() => handleClickTab("description")}>
+              <EventTab
+                onClick={() => handleClickTab("description")}
+                $active={tab === "description"}
+              >
                 Descrição
               </EventTab>
-              <EventTab onClick={() => handleClickTab("local")}>
+              <EventTab
+                onClick={() => handleClickTab("local")}
+                $active={tab === "local"}
+              >
                 Local/Data
               </EventTab>
             </EventTabs>
@@ -188,20 +157,13 @@ export default function EventPage({
               )}
             </EventInformation>
           </EventTabWrapper>
-          <EventBuy>
-            <EventImage>
-              <Image src={eventData?.image!} alt="Event Cover" fill />
-            </EventImage>
-            <EventBuyContent>
-              <EventPrice>{eventData?.price}</EventPrice>
-              <EventTickets>
-                Apenas <strong>{eventData?.tickets}</strong> disponíveis
-              </EventTickets>
-              <EventBuyButton>Comprar</EventBuyButton>
-            </EventBuyContent>
-          </EventBuy>
+          <BuyEventSideCard
+            eventDatas={eventData!}
+            targetLink={`/event/${id}/buy`}
+            buyText="Comprar ingresso"
+          />
         </EventContent>
       </Content>
-    </EventPageDiv>
+    </EventPageMain>
   );
 }
