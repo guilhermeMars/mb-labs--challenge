@@ -120,10 +120,6 @@ export default function EventPage({
       .then((data) => {
         setLoading(false);
         setEventData(data[0]);
-        console.log("Data:");
-        console.log(data);
-        console.log("Event Data:");
-        console.log(eventData);
       })
       .catch((err) => {
         console.log(err.message);

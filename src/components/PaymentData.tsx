@@ -91,29 +91,28 @@ const StyledField = styled(Field)`
   }
 `;
 
+const ButtonDiv = styled.div`
+  width: 100%;
+  flex: 100%;
+`;
+
 const StyledButton = styled.button`
   background: #818181 100%;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0;
   border-radius: 5px;
   color: hsl(0, 0%, 98%);
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 600;
   transition: all 0.2s ease-in-out;
   border: none;
   cursor: pointer;
-  width: 30%;
+  width: 8rem;
 
   &:hover {
     filter: brightness(90%);
     font-weight: 600;
     width: 31%;
   }
-`;
-
-const StyledErrorMessage = styled(ErrorMessage)`
-  color: red;
-  font-size: 0.8rem;
-  margin-top: 0.5rem;
 `;
 
 export default function PaymentData() {
@@ -222,7 +221,9 @@ export default function PaymentData() {
           </StyledField>
           <ErrorMessage name="numberOfInstallments" />
         </FieldDiv>
-        <StyledButton type="submit">Salvar</StyledButton>
+        <ButtonDiv>
+          <StyledButton type="submit">Salvar</StyledButton>
+        </ButtonDiv>
       </StyledForm>
     </Formik>
   );

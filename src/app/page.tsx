@@ -59,6 +59,7 @@ const EventDiv = styled.div`
   align-items: center;
   justify-content: center;
   gap: 3rem;
+  width: 100%;
   flex: calc(33.33% - 3rem);
   flex-wrap: wrap;
   padding: 0 1.5rem;
@@ -75,12 +76,13 @@ const EventCard = styled.div`
 
 const EventImage = styled.div`
   position: relative;
+  width: 100%;
   border-radius: 0 0 13px 13px;
   overflow: hidden;
   box-shadow: 0px 5px 10px hsl(0, 0%, 0%, 25%);
-  width: 455px;
-  height: 230px;
   margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
 `;
 
 const EventCardInfo = styled.div`
@@ -88,6 +90,10 @@ const EventCardInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  @media (max-width: 600px) {
+    padding: 0 1.5rem 2rem 1.5rem;
+  }
 `;
 
 const EventCardTitle = styled.h4`
@@ -107,9 +113,17 @@ const IconDiv = styled.div`
   gap: 0.5rem;
 `;
 
+const IconImageDiv = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+`;
+
 const IconText = styled.p`
-  color: #141414;
-  font-size: 1.4rem;
+  color: hsl(0, 0%, 27%);
+  font-size: 1.1rem;
   font-weight: 500;
 `;
 
@@ -151,27 +165,39 @@ export default function Home() {
                 <EventCard>
                   <EventImage>
                     {/* Next Image Component */}
-                    <Image src={event.image} alt={event.name + " Image"} fill />
+                    <Image
+                      src={event.image}
+                      alt={event.name + " Image"}
+                      width="455"
+                      height="230"
+                      layout="responsive"
+                    />
                   </EventImage>
                   <EventCardInfo>
                     <EventCardTitle>{event.name}</EventCardTitle>
                     <IconsDiv>
                       <IconDiv>
-                        <Image
-                          src="/Calendar icon.svg"
-                          alt=""
-                          width={38}
-                          height={44}
-                        />
+                        <IconImageDiv>
+                          <Image
+                            src="/Calendar icon.svg"
+                            alt=""
+                            width={38}
+                            height={44}
+                            layout="responsive"
+                          />
+                        </IconImageDiv>
                         <IconText>{event.date}</IconText>
                       </IconDiv>
                       <IconDiv>
-                        <Image
-                          src="/User Icon.svg"
-                          alt=""
-                          width={38}
-                          height={38}
-                        />
+                        <IconImageDiv>
+                          <Image
+                            src="/User Icon.svg"
+                            alt=""
+                            width={38}
+                            height={38}
+                            layout="responsive"
+                          />
+                        </IconImageDiv>
                         <IconText>{event.presenter}</IconText>
                       </IconDiv>
                     </IconsDiv>

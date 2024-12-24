@@ -37,10 +37,14 @@ const EventImage = styled.div`
 `;
 
 const EventBuyContent = styled.div`
-  margin: 0 2rem 2rem 2rem;
+  padding: 0 2rem 2rem 2rem;
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
+
+  @media (max-width: 600px) {
+    padding: 0 1.5rem 2rem 1.5rem;
+  }
 `;
 
 const EventBuyTitle = styled.h4`

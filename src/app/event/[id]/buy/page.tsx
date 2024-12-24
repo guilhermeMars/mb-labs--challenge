@@ -113,7 +113,7 @@ export default function BuyPage({
           <BuyInfos>
             <BuyInfo
               style={{
-                maxHeight: tab === "personalData" ? "26rem" : "2.8rem",
+                maxHeight: tab === "personalData" ? "37rem" : "2.8rem",
               }}
               onClick={() => setTab("personalData")}
             >
