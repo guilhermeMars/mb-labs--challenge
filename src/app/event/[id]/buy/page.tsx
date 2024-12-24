@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useEventContext } from "@/context/eventContext";
 import BuyEventSideCard from "@/components/BuyEventSideCard";
 import PersonalData from "@/components/PersonalData";
+import PaymentData from "@/components/PaymentData";
 
 // Styled Components
 
@@ -62,10 +63,6 @@ const BuyInfo = styled.div`
   overflow: hidden;
   transition: all 1.5s cubic-bezier(0.15, 0.29, 0.18, 1);
   cursor: pointer;
-
-  &:hover {
-    max-height: 20rem;
-  }
 `;
 
 const BuyInfoHeader = styled.h2`
@@ -76,7 +73,7 @@ const BuyInfoHeader = styled.h2`
   padding: 0.5rem 1rem;
 `;
 
-const BuyInfoFormPersonalData = styled.p`
+const BuyInfoFormPersonalData = styled.div`
   font-size: 1rem;
   padding: 0.5rem 1rem;
 `;
@@ -100,7 +97,7 @@ export default function BuyPage({
           <BuyInfos>
             <BuyInfo
               style={{
-                maxHeight: tab === "personalData" ? "20rem" : "2.8rem",
+                maxHeight: tab === "personalData" ? "26rem" : "2.8rem",
               }}
               onClick={() => setTab("personalData")}
             >
@@ -111,17 +108,13 @@ export default function BuyPage({
             </BuyInfo>
             <BuyInfo
               style={{
-                maxHeight: tab === "paymentData" ? "20rem" : "2.8rem",
+                maxHeight: tab === "paymentData" ? "32rem" : "2.8rem",
               }}
               onClick={() => setTab("paymentData")}
             >
               <BuyInfoHeader>Pagamento</BuyInfoHeader>
               <BuyInfoFormPersonalData>
-                {" "}
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptatibus ipsum omnis sunt nam reprehenderit voluptate natus
-                similique minima non, pariatur, dolore, ullam dolorum dicta!
-                Nostrum, nobis. Provident perferendis eius ullam!
+                <PaymentData />
               </BuyInfoFormPersonalData>
             </BuyInfo>
           </BuyInfos>

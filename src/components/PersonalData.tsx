@@ -11,6 +11,90 @@ interface PersonalDataProps {
   confirmPassword: string;
 }
 
+// Styled Components
+
+const StyledForm = styled(Form)`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+`;
+
+const FieldDiv = styled.div<{ $fieldType?: string }>`
+  ${({ $fieldType }) => {
+    switch ($fieldType) {
+      case "name":
+        return `
+          flex: calc(50% - 1rem);
+        `;
+      case "email":
+        return `
+          flex: 100%;
+        `;
+      case "phone":
+        return `
+          flex: calc(20% - 1rem);
+        `;
+      case "cpfCnpj":
+        return `
+          flex: calc(20% - 1rem);
+        `;
+      case "password":
+        return `
+          flex: calc(20% - 1rem);
+        `;
+      case "confirmPassword":
+        return `
+          flex: calc(20% - 1rem);
+          `;
+      default:
+        return "";
+    }
+  }}
+`;
+
+const StyledField = styled(Field)`
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: hsl(0, 0%, 90%);
+  color: black;
+
+  &:focus {
+    background-color: hsl(0, 0%, 95%);
+    color: black;
+    border-color: var(--quaternary-color);
+    box-shadow: 0 0 0 0.2rem hsla(313, 96%, 50%, 0.25);
+  }
+`;
+
+const StyledButton = styled.button`
+  background: #818181 100%;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  color: hsl(0, 0%, 98%);
+  font-size: 1.3rem;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+
+  &:hover {
+    filter: brightness(90%);
+    font-weight: 600;
+    width: 31%;
+  }
+`;
+
+const StyledErrorMessage = styled(ErrorMessage)`
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+`;
+
 export default function PersonalData() {
   const initialValues: PersonalDataProps = {
     firstName: "",
@@ -34,14 +118,14 @@ export default function PersonalData() {
 
         if (!values.firstName) {
           errors.firstName = "Obrigatório";
-        } else if (values.firstName.length > 5) {
+        } else if (values.firstName.length < 5) {
           errors.firstName = "Nome precisa ter mais que 5 letras";
         }
 
         if (!values.lastName) {
-          errors.lastName = "Required";
-        } else if (values.lastName.length > 20) {
-          errors.lastName = "Must be 20 characters or less";
+          errors.lastName = "Obrigatório";
+        } else if (values.lastName.length < 5) {
+          errors.lastName = "Sobrenome precisa ter mais que 5 letras";
         }
 
         if (!values.email) {
@@ -77,37 +161,51 @@ export default function PersonalData() {
         return errors;
       }}
     >
-      <Form>
-        <label htmlFor="firstName">Primeiro Nome:</label>
-        <Field name="firstName" type="text" />
-        <ErrorMessage name="firstName" />
+      <StyledForm>
+        <FieldDiv $fieldType="name">
+          <label htmlFor="firstName">Primeiro Nome:</label>
+          <StyledField name="firstName" type="text" />
+          <ErrorMessage name="firstName" />
+        </FieldDiv>
 
-        <label htmlFor="lastName">Último Nome:</label>
-        <Field name="lastName" type="text" />
-        <ErrorMessage name="lastName" />
+        <FieldDiv $fieldType="name">
+          <label htmlFor="lastName">Último Nome:</label>
+          <StyledField name="lastName" type="text" />
+          <ErrorMessage name="lastName" />
+        </FieldDiv>
 
-        <label htmlFor="email">Email:</label>
-        <Field name="email" type="email" />
-        <ErrorMessage name="email" />
+        <FieldDiv $fieldType="email">
+          <label htmlFor="email">Email:</label>
+          <StyledField name="email" type="email" />
+          <ErrorMessage name="email" />
+        </FieldDiv>
 
-        <label htmlFor="phone">Telefone:</label>
-        <Field name="phone" type="number" />
-        <ErrorMessage name="phone" />
+        <FieldDiv $fieldType="phone">
+          <label htmlFor="phone">Telefone:</label>
+          <StyledField name="phone" type="number" />
+          <ErrorMessage name="phone" />
+        </FieldDiv>
 
-        <label htmlFor="cpfCnpj">Cpf ou CNPJ:</label>
-        <Field name="cpfCnpj" type="number" />
-        <ErrorMessage name="cpfCnpj" />
+        <FieldDiv $fieldType="cpfCnpj">
+          <label htmlFor="cpfCnpj">Cpf ou CNPJ:</label>
+          <StyledField name="cpfCnpj" type="number" />
+          <ErrorMessage name="cpfCnpj" />
+        </FieldDiv>
 
-        <label htmlFor="password">Senha:</label>
-        <Field name="password" type="string" />
-        <ErrorMessage name="password" />
+        <FieldDiv $fieldType="password">
+          <label htmlFor="password">Senha:</label>
+          <StyledField name="password" type="string" />
+          <ErrorMessage name="password" />
+        </FieldDiv>
 
-        <label htmlFor="confirmPassword">Confirmar Senha:</label>
-        <Field name="confirmPassword" type="string" />
-        <ErrorMessage name="confirmPassword" />
+        <FieldDiv $fieldType="password">
+          <label htmlFor="confirmPassword">Confirmar Senha:</label>
+          <StyledField name="confirmPassword" type="string" />
+          <ErrorMessage name="confirmPassword" />
+        </FieldDiv>
 
-        <button type="submit">Teste Submit</button>
-      </Form>
+        <StyledButton type="submit">Salvar</StyledButton>
+      </StyledForm>
     </Formik>
   );
 }

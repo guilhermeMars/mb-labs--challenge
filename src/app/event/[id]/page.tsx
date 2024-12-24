@@ -80,7 +80,6 @@ const EventTab = styled.button<{ $active?: boolean }>`
 
   &:hover {
     background-color: hsl(313, 97%, 80%);
-    font-weight: 600;
     padding: 0.5rem 1.2rem;
     cursor: pointer;
   }
