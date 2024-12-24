@@ -1,9 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useEventContext } from "@/context/eventContext";
 import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
+import { Event } from "@/interface/eventInterface";
 
 // Styled Components
 
@@ -114,22 +114,21 @@ const IconText = styled.p`
 `;
 
 export default function Home() {
-  const { events } = useEventContext();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [events, setEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  // useEffect(() => {
-  //   const fetchEvents = async () => {
-  //     setLoading(true);
-  //     const data = await new Promise<Event[]>((resolve) => {
-  //       setTimeout(() => {
-  //         resolve(getEvents()), 1000;
-  //       });
-  //     });
-  //     setEvents(data);
-  //     setLoading(false);
-  //   };
-  //   fetchEvents();
-  // }, []);
+  useEffect(() => {
+    setLoading(true);
+    fetch("http://localhost:8000/events")
+      .then((response) => response.json())
+      .then((data) => {
+        setLoading(false);
+        setEvents(data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
 
   return (
     <HomePage>

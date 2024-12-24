@@ -1,9 +1,9 @@
 "use client";
 
 import styled from "styled-components";
-import { use } from "react";
+import { use, useEffect } from "react";
 import { useState } from "react";
-import { useEventContext } from "@/context/eventContext";
+import { Event } from "@/interface/eventInterface";
 import BuyEventSideCard from "@/components/BuyEventSideCard";
 import PersonalData from "@/components/PersonalData";
 import PaymentData from "@/components/PaymentData";
@@ -84,8 +84,24 @@ export default function BuyPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = use(params);
-  const { events } = useEventContext();
-  const eventData = events.find((event) => event._id === id);
+  const [loading, setLoading] = useState(true);
+  const [eventData, setEventData] = useState<Event>();
+  useEffect(() => {
+    setLoading(true);
+    fetch(`http://localhost:8000/events?_id=${id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setLoading(false);
+        setEventData(data[0]);
+        console.log("Data:");
+        console.log(data);
+        console.log("Event Data:");
+        console.log(eventData);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
 
   const [tab, setTab] = useState<string>("personalData");
 

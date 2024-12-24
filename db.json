@@ -1,0 +1,224 @@
+{
+  "events": [
+    {
+      "_id": "1",
+      "name": "Introduction to AI",
+      "description": "This session will cover the basics of Artificial Intelligence and its applications, including machine learning, natural language processing, and robotics. The speaker, Dr. Jane Smith, is a leading expert in the field and will share her insights on the current state of AI technology and future directions.",
+      "date": "15/01/24",
+      "location": "Auditorium A",
+      "price": "20",
+      "image": "/eventCover/presentation-cover.webp",
+      "presenter": "Dr. Jane Smith",
+      "tickets": 100
+    },
+    {
+      "_id": "2",
+      "name": "Networking Night",
+      "description": "Join us for an evening of networking with professionals and peers. This is a great opportunity to connect with like-minded individuals and learn about the latest projects and initiatives in the field. The event will feature refreshments and a relaxed atmosphere.",
+      "date": "20/01/24",
+      "location": "Main Hall",
+      "price": "10",
+      "image": "/eventCover/get-together-cover.webp",
+      "presenter": "John Doe",
+      "tickets": 150
+    },
+    {
+      "_id": "3",
+      "name": "Glühwein Gathering",
+      "description": "Take a break from the cold winter weather and join us for a warm cup of Glühwein. This is a great opportunity to relax and socialize with colleagues and friends. The event will feature a selection of snacks and drinks.",
+      "date": "10/02/24",
+      "location": "Outdoor Garden",
+      "price": "5",
+      "image": "/eventCover/gluhwein-cover.webp",
+      "presenter": "Anna Keller",
+      "tickets": 200
+    },
+    {
+      "_id": "4",
+      "name": "Professor's Panel",
+      "description": "Join us for a discussion with leading professors in the field. This is a great opportunity to learn about the latest research and developments in the field and ask questions. The event will feature a panel of professors from leading institutions.",
+      "date": "15/02/24",
+      "location": "Lecture Room 3",
+      "price": "Free",
+      "image": "/eventCover/professor-cover.webp",
+      "presenter": "Panel of Professors",
+      "tickets": 300
+    },
+    {
+      "_id": "5",
+      "name": "Weekly Meeting",
+      "description": "Join us for our regular meeting to discuss ongoing projects. This is a great opportunity to learn about the latest projects and initiatives in the field and ask questions. The event will feature refreshments and a relaxed atmosphere.",
+      "date": "22/02/24",
+      "location": "Meeting Room B",
+      "price": "Free",
+      "image": "/eventCover/meeting-room-cover.webp",
+      "presenter": "Team Leads",
+      "tickets": 50
+    },
+    {
+      "_id": "6",
+      "name": "Blue Sky Presentation",
+      "description": "Join us for a presentation of innovative ideas and projects. This is a great opportunity to learn about the latest research and developments in the field and ask questions. The event will feature a selection of snacks and drinks.",
+      "date": "01/03/24",
+      "location": "Auditorium B",
+      "price": "15",
+      "image": "/eventCover/blue-presentation-cover.webp",
+      "presenter": "Dr. Albert Lee",
+      "tickets": 120
+    },
+    {
+      "_id": "7",
+      "name": "Data Science Workshop",
+      "description": "Join us for a hands-on workshop on data analysis and machine learning. This is a great opportunity to learn about the latest tools and techniques in data analysis and ask questions. The event will feature a selection of snacks and drinks.",
+      "date": "10/03/24",
+      "location": "Lab 1",
+      "price": "25",
+      "image": "/eventCover/presentation-cover.webp",
+      "presenter": "Dr. Rachel Green",
+      "tickets": 80
+    },
+    {
+      "_id": "8",
+      "name": "Alumni Meetup",
+      "description": "Join us for a reunion with alumni and share experiences. This is a great opportunity to connect with like-minded individuals and learn about the latest projects and initiatives in the field. The event will feature refreshments and a relaxed atmosphere.",
+      "date": "20/03/24",
+      "location": "Main Courtyard",
+      "price": "15",
+      "image": "/eventCover/get-together-cover.webp",
+      "presenter": "Alumni Association",
+      "tickets": 250
+    },
+    {
+      "_id": "9",
+      "name": "Winter Symposium",
+      "description": "Join us for a day of academic presentations and discussions. This is a great opportunity to learn about the latest research and developments in the field and ask questions. The event will feature a selection of snacks and drinks.",
+      "date": "25/03/24",
+      "location": "Conference Room 2",
+      "price": "30",
+      "image": "/eventCover/blue-presentation-cover.webp",
+      "presenter": "Dr. Paul Newman",
+      "tickets": 90
+    },
+    {
+      "_id": "10",
+      "name": "Spring Gala",
+      "description": "Join us for a formal event to celebrate the semester. This is a great opportunity to connect with like-minded individuals and learn about the latest projects and initiatives in the field. The event will feature refreshments and a relaxed atmosphere.",
+      "date": "05/04/24",
+      "location": "Ballroom",
+      "price": "50",
+      "image": "/eventCover/get-together-cover.webp",
+      "presenter": "Event Committee",
+      "tickets": 300
+    },
+    {
+      "_id": "11",
+      "name": "Research Showcase",
+      "description": "Join us for a showcase of ongoing research projects. This is a great opportunity to learn about the latest research and developments in the field and ask questions. The event will feature a selection of snacks and drinks.",
+      "date": "10/04/24",
+      "location": "Exhibition Hall",
+      "price": "Free",
+      "image": "/eventCover/presentation-cover.webp",
+      "presenter": "Various Researchers",
+      "tickets": 400
+    },
+    {
+      "_id": "12",
+      "name": "Evening with Experts",
+      "description": "Join us for a fireside chat with industry leaders. This is a great opportunity to learn about the latest projects and initiatives in the field and ask questions. The event will feature refreshments and a relaxed atmosphere.",
+      "date": "15/04/24",
+      "location": "Lounge",
+      "price": "20",
+      "image": "/eventCover/professor-cover.webp",
+      "presenter": "Industry Panel",
+      "tickets": 100
+    },
+    {
+      "_id": "13",
+      "name": "Cultural Night",
+      "description": "Join us for an evening of cultural performances and refreshments. This is a great opportunity to experience the diverse cultures of our community and ask questions. The event will feature a selection of snacks and drinks.",
+      "date": "20/04/24",
+      "location": "Cultural Center",
+      "price": "10",
+      "image": "/eventCover/get-together-cover.webp",
+      "presenter": "Cultural Committee",
+      "tickets": 500
+    },
+    {
+      "_id": "14",
+      "name": "Summer Tech Fair",
+      "description": "Join us for a day of exploring the latest technological innovations. This is a great opportunity to learn about the latest projects and initiatives in the field and ask questions. The event will feature a selection of snacks and drinks.",
+      "date": "05/05/24",
+      "location": "Tech Hub",
+      "price": "30",
+      "image": "/eventCover/presentation-cover.webp",
+      "presenter": "Tech Team",
+      "tickets": 300
+    },
+    {
+      "_id": "15",
+      "name": "Health and Wellness Expo",
+      "description": "Join us for a day of learning about health and wellness practices. This is a great opportunity to learn about the latest research and developments in health and wellness and ask questions. The event will feature a selection of snacks and drinks.",
+      "date": "15/05/24",
+      "location": "Wellness Center",
+      "price": "10",
+      "image": "/eventCover/meeting-room-cover.webp",
+      "presenter": "Health Experts",
+      "tickets": 150
+    },
+    {
+      "_id": "16",
+      "name": "Art Exhibition",
+      "description": "Join us for an evening of art and refreshments. This is a great opportunity to experience the diverse artistic talents of our community and ask questions. The event will feature a selection of snacks and drinks.",
+      "date": "01/06/24",
+      "location": "Art Gallery",
+      "price": "15",
+      "image": "/eventCover/get-together-cover.webp",
+      "presenter": "Art Department",
+      "tickets": 200
+    },
+    {
+      "_id": "17",
+      "name": "Coding Bootcamp",
+      "description": "Intensive programming sessions for all levels. Learn new skills, network with other coders, and build your own projects.",
+      "date": "10/06/24",
+      "location": "Lab 2",
+      "price": "40",
+      "image": "/eventCover/presentation-cover.webp",
+      "presenter": "Code Masters",
+      "tickets": 60
+    },
+    {
+      "_id": "18",
+      "name": "Environmental Awareness Day",
+      "description": "Join us for a day of workshops and talks on environmental conservation. Learn about the latest developments in sustainable practices and network with other environmentally conscious individuals.",
+      "date": "15/06/24",
+      "location": "Green Auditorium",
+      "price": "Free",
+      "image": "/eventCover/blue-presentation-cover.webp",
+      "presenter": "Eco Team",
+      "tickets": 500
+    },
+    {
+      "_id": "19",
+      "name": "Robotics Demo Day",
+      "description": "See cutting-edge robotics in action. Our robots will be demonstrating their capabilities in various tasks and challenges.",
+      "date": "20/06/24",
+      "location": "Engineering Hall",
+      "price": "25",
+      "image": "/eventCover/presentation-cover.webp",
+      "presenter": "Robotics Club",
+      "tickets": 100
+    },
+    {
+      "_id": "20",
+      "name": "Startup Pitch Night",
+      "description": "Witness innovative startup ideas. Our entrepreneurs will be pitching their ideas to a panel of judges and answering questions from the audience.",
+      "date": "01/07/24",
+      "location": "Business Lounge",
+      "price": "20",
+      "image": "/eventCover/presentation-cover.webp",
+      "presenter": "Startup Enthusiasts",
+      "tickets": 200
+    }
+  ]
+}

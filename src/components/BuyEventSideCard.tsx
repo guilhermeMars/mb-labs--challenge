@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { Event } from "@/mock/eventData";
+import { Event } from "@/interface/eventInterface";
 import Link from "next/link";
 
 interface BuyEventSideCardProps {
@@ -15,6 +15,7 @@ const EventBuy = styled.div`
   flex: calc(30% - 2rem);
   border-radius: 15px;
   overflow: hidden;
+  height: 100%;
   min-width: 300px;
 
   @media (max-width: 1250px) {
@@ -90,7 +91,7 @@ export default function BuyEventSideCard({
     <EventBuy>
       <EventImage>
         <Image
-          src={eventDatas?.image!}
+          src={eventDatas?.image || "/eventCover/default-cover.webp"}
           alt="Event Cover"
           width="455"
           height="230"
