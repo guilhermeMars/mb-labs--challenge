@@ -5,14 +5,12 @@ import { use, useEffect } from "react";
 import { useState } from "react";
 import BuyEventSideCard from "@/components/BuyEventSideCard";
 import { Event } from "@/interface/eventInterface";
+import Image from "next/image";
 
 // Styled Components
 
 const EventPageMain = styled.div`
-  background-color: #2d2d2d;
   width: 100%;
-  /* Remove later */
-  min-height: 100svh;
 `;
 
 const Content = styled.div`
@@ -134,6 +132,19 @@ export default function EventPage({
 
   return (
     <EventPageMain>
+      <Image
+        src={"/Background.webp"}
+        alt="Background"
+        priority
+        width={1920}
+        height={1080}
+        style={{
+          zIndex: -1,
+          position: "fixed",
+          height: "100vh",
+          width: "100vw",
+        }}
+      />
       {loading ? (
         <h1>Loading...</h1>
       ) : (

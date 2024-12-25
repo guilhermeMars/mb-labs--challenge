@@ -3,6 +3,7 @@
 import styled from "styled-components";
 import { use, useEffect } from "react";
 import { useState } from "react";
+import Image from "next/image";
 import { Event } from "@/interface/eventInterface";
 import BuyEventSideCard from "@/components/BuyEventSideCard";
 import PersonalData from "@/components/PersonalData";
@@ -11,10 +12,7 @@ import PaymentData from "@/components/PaymentData";
 // Styled Components
 
 const BuyPageMain = styled.div`
-  background-color: #2d2d2d;
   width: 100%;
-  /* Remove later */
-  min-height: 100svh;
 `;
 
 const Content = styled.div`
@@ -107,6 +105,19 @@ export default function BuyPage({
 
   return (
     <BuyPageMain>
+      <Image
+        src={"/Background.webp"}
+        alt="Background"
+        priority
+        width={1920}
+        height={1080}
+        style={{
+          zIndex: -1,
+          position: "fixed",
+          height: "100vh",
+          width: "100vw",
+        }}
+      />
       <Content>
         <BuyTitle>Compra de {eventData?.name}</BuyTitle>
         <BuyContent>

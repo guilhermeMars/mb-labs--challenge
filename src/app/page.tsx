@@ -8,10 +8,7 @@ import { Event } from "@/interface/eventInterface";
 // Styled Components
 
 const HomePage = styled.div`
-  background-color: #2d2d2d;
   width: 100%;
-  /* Remove later */
-  min-height: 100svh;
 `;
 
 const Content = styled.div`
@@ -146,6 +143,19 @@ export default function Home() {
 
   return (
     <HomePage>
+      <Image
+        src={"/Background.webp"}
+        alt="Background"
+        priority
+        width={1920}
+        height={1080}
+        style={{
+          zIndex: -1,
+          position: "fixed",
+          height: "100vh",
+          width: "100vw",
+        }}
+      />
       <Content>
         <LogoImage>
           {/* <Image src={null} alt="MbLabs Logo" width={0} height={0} /> */}
