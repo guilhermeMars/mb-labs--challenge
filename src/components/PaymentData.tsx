@@ -135,6 +135,24 @@ export default function PaymentData({ index, onSubmit }: PaymentDataProps) {
       initialValues={initialValues}
       onSubmit={(values, actions) => {
         alert(JSON.stringify(values, null, 2));
+        try {
+          fetch("/api/events", {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(values),
+          })
+            .then((response) => response.json())
+            .then(() => {
+              console.log("Pagamento realizado com sucesso!");
+            });
+        } catch (error) {
+          console.error(error);
+        } finally {
+          // setLoading(false);
+        }
         if (onSubmit) onSubmit(index);
         actions.setSubmitting(false);
       }}
