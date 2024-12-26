@@ -17,7 +17,7 @@ const Content = styled.div`
   justify-content: center;
   flex-direction: column;
   max-width: 1600px;
-  margin: 0 auto;
+  margin: 0 auto 2rem auto;
   font-family: "Inter", sans-serif;
 `;
 
@@ -120,12 +120,6 @@ const IconText = styled.p`
   font-weight: 500;
 `;
 
-const LogoImage = styled.div`
-  position: relative;
-  max-width: 150px;
-  margin: 4rem 0 2rem 0;
-`;
-
 export default function Home() {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -203,15 +197,6 @@ export default function Home() {
             ))
           )}
         </EventDiv>
-        <LogoImage>
-          <Image
-            src={"/mb-logo.webp"}
-            alt="MbLabs Logo"
-            width={364}
-            height={171}
-            layout="responsive"
-          />
-        </LogoImage>
       </Content>
     </HomePage>
   );

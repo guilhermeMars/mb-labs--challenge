@@ -21,7 +21,7 @@ const Content = styled.div`
   justify-content: center;
   flex-direction: column;
   max-width: 1600px;
-  margin: 0 auto;
+  margin: 0 auto 2rem auto;
   font-family: "Inter", sans-serif;
 `;
 

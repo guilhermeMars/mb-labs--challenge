@@ -19,11 +19,12 @@ const Content = styled.div`
   font-family: "Inter", sans-serif;
   height: 100vh;
   color: hsl(0, 0%, 98%);
+  padding: 0 1rem;
 `;
 
 const StyledH1 = styled.h1`
   margin-bottom: 0.5rem;
-  font-size: clamp(2rem, 4vw, 5rem);
+  font-size: clamp(3rem, 4vw, 5rem);
   font-weight: bold;
 `;
 

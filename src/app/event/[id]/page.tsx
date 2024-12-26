@@ -5,7 +5,6 @@ import { use, useEffect } from "react";
 import { useState } from "react";
 import BuyEventSideCard from "@/components/BuyEventSideCard";
 import { Event } from "@/interface/eventInterface";
-import Image from "next/image";
 
 // Styled Components
 
@@ -19,12 +18,13 @@ const Content = styled.div`
   justify-content: center;
   flex-direction: column;
   max-width: 1600px;
-  margin: 0 auto;
+  margin: 0 auto 2rem auto;
   font-family: "Inter", sans-serif;
 `;
 
 const EventTextTitle = styled.div`
   margin: 3rem 0;
+  padding: 0 1rem;
 `;
 
 const EventTitle = styled.h1`
