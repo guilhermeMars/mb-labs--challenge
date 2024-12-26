@@ -1,20 +1,10 @@
 import styled from "styled-components";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-
-type Installments = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+import { Payment } from "@/interface/paymentInterface";
 
 interface PaymentDataProps {
   index?: number;
   onSubmit?: (index?: number) => void;
-}
-
-interface PaymentDataValues {
-  cardNumber: number;
-  name: string;
-  expirationDay: number;
-  expirationMonth: number;
-  cvv: number;
-  numberOfInstallments: Installments;
 }
 
 interface PaymentDataErrors {
@@ -121,7 +111,7 @@ const StyledButton = styled.button`
 `;
 
 export default function PaymentData({ index, onSubmit }: PaymentDataProps) {
-  const initialValues: PaymentDataValues = {
+  const initialValues: Payment = {
     cardNumber: 0,
     name: "",
     expirationDay: 0,
@@ -136,7 +126,7 @@ export default function PaymentData({ index, onSubmit }: PaymentDataProps) {
       onSubmit={(values, actions) => {
         alert(JSON.stringify(values, null, 2));
         try {
-          fetch("/api/events", {
+          fetch("/api/payment", {
             method: "POST",
             headers: {
               Accept: "application/json",
