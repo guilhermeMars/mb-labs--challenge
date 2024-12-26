@@ -5,10 +5,10 @@ import { Event } from "@/interface/eventInterface";
 const events: Event[] = eventData.events;
 
 export async function GET(
-  req: Request,
-  { params }: { params: { id: string } }
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id } = params;
+  const { id } = await params;
   const event = events.find((event) => event._id === id);
 
   if (!event) {
