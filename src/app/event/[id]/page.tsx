@@ -132,19 +132,6 @@ export default function EventPage({
 
   return (
     <EventPageMain>
-      <Image
-        src={"/Background.webp"}
-        alt="Background"
-        priority
-        width={1920}
-        height={1080}
-        style={{
-          zIndex: -1,
-          position: "fixed",
-          height: "100vh",
-          width: "100vw",
-        }}
-      />
       {loading ? (
         <h1>Loading...</h1>
       ) : (

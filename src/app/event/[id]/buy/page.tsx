@@ -105,19 +105,6 @@ export default function BuyPage({
 
   return (
     <BuyPageMain>
-      <Image
-        src={"/Background.webp"}
-        alt="Background"
-        priority
-        width={1920}
-        height={1080}
-        style={{
-          zIndex: -1,
-          position: "fixed",
-          height: "100vh",
-          width: "100vw",
-        }}
-      />
       <Content>
         <BuyTitle>Compra de {eventData?.name}</BuyTitle>
         <BuyContent>

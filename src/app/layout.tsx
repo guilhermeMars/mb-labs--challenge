@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Image from "next/image";
 // import { EventProvider } from "@/context/eventContext";
 
 const getInter = Inter({
@@ -21,7 +22,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={getInter.className}>{children}</body>
+      <body className={getInter.className}>
+        <Image
+          src={"/Background.webp"}
+          alt="Background"
+          priority
+          width={1920}
+          height={1080}
+          style={{
+            zIndex: -1,
+            position: "fixed",
+            height: "100vh",
+            width: "100vw",
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

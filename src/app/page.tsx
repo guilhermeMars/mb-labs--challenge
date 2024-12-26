@@ -143,19 +143,6 @@ export default function Home() {
 
   return (
     <HomePage>
-      <Image
-        src={"/Background.webp"}
-        alt="Background"
-        priority
-        width={1920}
-        height={1080}
-        style={{
-          zIndex: -1,
-          position: "fixed",
-          height: "100vh",
-          width: "100vw",
-        }}
-      />
       <Content>
         <LogoImage>
           {/* <Image src={null} alt="MbLabs Logo" width={0} height={0} /> */}
