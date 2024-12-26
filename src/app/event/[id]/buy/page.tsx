@@ -101,7 +101,20 @@ export default function BuyPage({
       });
   }, []);
 
-  const [tab, setTab] = useState<string>("personalData");
+  const [isFormValid, setIsFormValid] = useState<boolean[]>([false, false]);
+  const [tab, setTab] = useState<number>(0);
+  const isAllValid = isFormValid.every((status) => status);
+
+  function handleFormSubmit(index?: number) {
+    if (index || index === 0) {
+      setIsFormValid((prev) => {
+        const newStatus = [...prev];
+        newStatus[index] = true;
+        return newStatus;
+      });
+    }
+    setTab(tab + 1);
+  }
 
   return (
     <BuyPageMain>
@@ -111,31 +124,32 @@ export default function BuyPage({
           <BuyInfos>
             <BuyInfo
               style={{
-                maxHeight: tab === "personalData" ? "37rem" : "2.8rem",
+                maxHeight: tab === 0 ? "37rem" : "2.8rem",
               }}
-              onClick={() => setTab("personalData")}
+              onClick={() => setTab(0)}
             >
               <BuyInfoHeader>Dados Pessoais</BuyInfoHeader>
               <BuyInfoFormPersonalData>
-                <PersonalData />
+                <PersonalData index={0} onSubmit={handleFormSubmit} />
               </BuyInfoFormPersonalData>
             </BuyInfo>
             <BuyInfo
               style={{
-                maxHeight: tab === "paymentData" ? "32rem" : "2.8rem",
+                maxHeight: tab === 1 ? "32rem" : "2.8rem",
               }}
-              onClick={() => setTab("paymentData")}
+              onClick={() => setTab(1)}
             >
               <BuyInfoHeader>Pagamento</BuyInfoHeader>
               <BuyInfoFormPersonalData>
-                <PaymentData />
+                <PaymentData index={1} onSubmit={handleFormSubmit} />
               </BuyInfoFormPersonalData>
             </BuyInfo>
           </BuyInfos>
           <BuyEventSideCard
             eventDatas={eventData!}
-            targetLink="#"
+            targetLink={`/event/${eventData?._id}/acknowledgment`}
             buyText="Finalizar compra"
+            btnEnable={isAllValid}
           />
         </BuyContent>
       </Content>

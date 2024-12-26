@@ -2,6 +2,10 @@ import styled from "styled-components";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 interface PersonalDataProps {
+  index?: number;
+  onSubmit?: (index?: number) => void;
+}
+interface PersonalDataValues {
   firstName: string;
   lastName: string;
   email: string;
@@ -101,8 +105,8 @@ const StyledButton = styled.button`
   }
 `;
 
-export default function PersonalData() {
-  const initialValues: PersonalDataProps = {
+export default function PersonalData({ index, onSubmit }: PersonalDataProps) {
+  const initialValues: PersonalDataValues = {
     firstName: "",
     lastName: "",
     email: "",
@@ -117,10 +121,11 @@ export default function PersonalData() {
       initialValues={initialValues}
       onSubmit={(values, actions) => {
         alert(JSON.stringify(values, null, 2));
+        if (onSubmit) onSubmit(index);
         actions.setSubmitting(false);
       }}
       validate={(values) => {
-        const errors: Partial<PersonalDataProps> = {};
+        const errors: Partial<PersonalDataValues> = {};
 
         if (!values.firstName) {
           errors.firstName = "Obrigatório";

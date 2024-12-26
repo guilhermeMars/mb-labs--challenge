@@ -3,7 +3,12 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 
 type Installments = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
-interface PersonalDataProps {
+interface PaymentDataProps {
+  index?: number;
+  onSubmit?: (index?: number) => void;
+}
+
+interface PaymentDataValues {
   cardNumber: number;
   name: string;
   expirationDay: number;
@@ -12,7 +17,7 @@ interface PersonalDataProps {
   numberOfInstallments: Installments;
 }
 
-interface PersonalDataErrors {
+interface PaymentDataErrors {
   cardNumber?: string;
   name?: string;
   expirationDay?: string;
@@ -115,8 +120,8 @@ const StyledButton = styled.button`
   }
 `;
 
-export default function PaymentData() {
-  const initialValues: PersonalDataProps = {
+export default function PaymentData({ index, onSubmit }: PaymentDataProps) {
+  const initialValues: PaymentDataValues = {
     cardNumber: 0,
     name: "",
     expirationDay: 0,
@@ -130,10 +135,11 @@ export default function PaymentData() {
       initialValues={initialValues}
       onSubmit={(values, actions) => {
         alert(JSON.stringify(values, null, 2));
+        if (onSubmit) onSubmit(index);
         actions.setSubmitting(false);
       }}
       validate={(values) => {
-        const errors: Partial<PersonalDataErrors> = {};
+        const errors: Partial<PaymentDataErrors> = {};
 
         if (!values.cardNumber) {
           errors.cardNumber = "Obrigatório";

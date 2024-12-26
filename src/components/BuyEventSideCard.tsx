@@ -7,6 +7,7 @@ interface BuyEventSideCardProps {
   eventDatas: Event;
   targetLink?: string;
   buyText?: string;
+  btnEnable?: boolean;
 }
 
 // Styled Components
@@ -64,7 +65,7 @@ const EventTickets = styled.p`
   color: hsl(0, 0%, 5%);
 `;
 
-const EventBuyButton = styled.button`
+const EventBuyButton = styled.button<{ $btnEnable?: boolean }>`
   background: linear-gradient(
     130deg,
     rgba(240, 115, 20, 1) 0%,
@@ -78,19 +79,35 @@ const EventBuyButton = styled.button`
   font-weight: 600;
   transition: all 0.2s ease-in-out;
   border: none;
-  cursor: pointer;
+  filter: ${(props) =>
+    props.$btnEnable ? "brightness(90%)" : "grayscale(40%)"};
 
-  &:hover {
-    filter: brightness(90%);
-    font-weight: 600;
-    padding: 0.5rem 1.5rem;
-  }
+  // Add hover effect
+  ${({ $btnEnable }) =>
+    $btnEnable &&
+    `
+      &:hover {
+        filter: brightness(100%);
+        padding: 0.5rem 1.5rem;
+        cursor: pointer;
+      }
+    `}
 `;
 export default function BuyEventSideCard({
   eventDatas,
   targetLink,
   buyText,
+  btnEnable,
 }: BuyEventSideCardProps) {
+  const conditionalProps =
+    btnEnable !== undefined && btnEnable === false
+      ? {
+          className: "disabled",
+          "aria-disabled": true,
+          tabIndex: -1,
+        }
+      : {};
+
   return (
     <EventBuy>
       <EventImage>
@@ -109,8 +126,8 @@ export default function BuyEventSideCard({
           Apenas <strong>{eventDatas?.tickets}</strong> disponíveis
         </EventTickets>
         {targetLink && (
-          <Link href={targetLink}>
-            <EventBuyButton>{buyText}</EventBuyButton>
+          <Link href={btnEnable ? targetLink : "#"} {...conditionalProps}>
+            <EventBuyButton $btnEnable={btnEnable}>{buyText}</EventBuyButton>
           </Link>
         )}
       </EventBuyContent>
