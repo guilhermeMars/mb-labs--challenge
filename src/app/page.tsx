@@ -21,12 +21,8 @@ const Content = styled.div`
   font-family: "Inter", sans-serif;
 `;
 
-const LogoImage = styled.div`
-  max-width: 300px;
-`;
-
 const TextDiv = styled.div`
-  margin: 4rem 0%;
+  margin: 4rem 0;
 `;
 
 const EventTitle = styled.h1<{ $primary?: boolean }>`
@@ -124,6 +120,12 @@ const IconText = styled.p`
   font-weight: 500;
 `;
 
+const LogoImage = styled.div`
+  position: relative;
+  max-width: 150px;
+  margin: 4rem 0 2rem 0;
+`;
+
 export default function Home() {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -144,9 +146,6 @@ export default function Home() {
   return (
     <HomePage>
       <Content>
-        <LogoImage>
-          {/* <Image src={null} alt="MbLabs Logo" width={0} height={0} /> */}
-        </LogoImage>
         <TextDiv>
           <EventTitle $primary>
             Encontre seu <GradientText>evento</GradientText>!
@@ -204,6 +203,15 @@ export default function Home() {
             ))
           )}
         </EventDiv>
+        <LogoImage>
+          <Image
+            src={"/mb-logo.webp"}
+            alt="MbLabs Logo"
+            width={364}
+            height={171}
+            layout="responsive"
+          />
+        </LogoImage>
       </Content>
     </HomePage>
   );
