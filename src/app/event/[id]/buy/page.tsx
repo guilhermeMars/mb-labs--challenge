@@ -3,7 +3,7 @@
 import styled from "styled-components";
 import { use, useEffect } from "react";
 import { useState } from "react";
-import Image from "next/image";
+import emailjs from "emailjs-com";
 import { Event } from "@/interface/eventInterface";
 import BuyEventSideCard from "@/components/BuyEventSideCard";
 import PersonalData from "@/components/PersonalData";
@@ -111,6 +111,31 @@ export default function BuyPage({
     setTab(tab + 1);
   }
 
+  function onClickButton() {
+    const templateParams = {
+      name: "Guilherme",
+      reply_to: "guilhermemspiandorin@gmail.com",
+    };
+    emailjs
+      .send(
+        "service_648iddf",
+        "template_rcql7i8",
+        templateParams,
+        "6-gYsOV4qKTab9Qz-"
+      )
+      .then(
+        (result) => {
+          alert("Email enviado com sucesso!");
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      )
+      .then(() => {
+        window.location.href = `/event/${id}/acknowledgment`;
+      });
+  }
+
   return (
     <BuyPageMain>
       <Content>
@@ -142,7 +167,7 @@ export default function BuyPage({
           </BuyInfos>
           <BuyEventSideCard
             eventDatas={eventData!}
-            targetLink={`/event/${eventData?._id}/acknowledgment`}
+            buttonOnClick={onClickButton}
             buyText="Finalizar compra"
             btnEnable={isAllValid}
           />

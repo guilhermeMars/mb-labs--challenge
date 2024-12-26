@@ -8,6 +8,7 @@ interface BuyEventSideCardProps {
   targetLink?: string;
   buyText?: string;
   btnEnable?: boolean;
+  buttonOnClick?: () => void;
 }
 
 // Styled Components
@@ -98,6 +99,7 @@ export default function BuyEventSideCard({
   targetLink,
   buyText,
   btnEnable = true,
+  buttonOnClick,
 }: BuyEventSideCardProps) {
   const conditionalProps =
     btnEnable !== undefined && btnEnable === false
@@ -125,11 +127,19 @@ export default function BuyEventSideCard({
         <EventTickets>
           Apenas <strong>{eventDatas?.tickets}</strong> disponíveis
         </EventTickets>
-        {targetLink && (
+        {targetLink ? (
           <Link href={btnEnable ? targetLink : "#"} {...conditionalProps}>
             <EventBuyButton $btnEnable={btnEnable}>{buyText}</EventBuyButton>
           </Link>
-        )}
+        ) : buttonOnClick !== undefined ? (
+          <EventBuyButton
+            onClick={buttonOnClick}
+            $btnEnable={btnEnable}
+            disabled={!btnEnable}
+          >
+            {buyText}
+          </EventBuyButton>
+        ) : null}
       </EventBuyContent>
     </EventBuy>
   );
