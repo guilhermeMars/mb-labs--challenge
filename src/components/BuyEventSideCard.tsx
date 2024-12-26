@@ -97,7 +97,7 @@ export default function BuyEventSideCard({
   eventDatas,
   targetLink,
   buyText,
-  btnEnable,
+  btnEnable = true,
 }: BuyEventSideCardProps) {
   const conditionalProps =
     btnEnable !== undefined && btnEnable === false

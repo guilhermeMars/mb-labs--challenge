@@ -113,11 +113,11 @@ export default function EventPage({
   const [eventData, setEventData] = useState<Event>();
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:8000/events?_id=${id}`)
+    fetch(`/api/events/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);
-        setEventData(data[0]);
+        setEventData(data);
       })
       .catch((err) => {
         console.log(err.message);

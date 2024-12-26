@@ -86,21 +86,16 @@ export default function BuyPage({
   const [eventData, setEventData] = useState<Event>();
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:8000/events?_id=${id}`)
+    fetch(`/api/events/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);
-        setEventData(data[0]);
-        console.log("Data:");
-        console.log(data);
-        console.log("Event Data:");
-        console.log(eventData);
+        setEventData(data);
       })
       .catch((err) => {
         console.log(err.message);
       });
   }, []);
-
   const [isFormValid, setIsFormValid] = useState<boolean[]>([false, false]);
   const [tab, setTab] = useState<number>(0);
   const isAllValid = isFormValid.every((status) => status);
