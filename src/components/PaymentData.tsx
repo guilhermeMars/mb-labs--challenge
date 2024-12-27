@@ -39,15 +39,15 @@ const FieldDiv = styled.div<{ $fieldType?: string }>`
       case "expirationMonth":
         return `
           ${StyledField} {
-            border-radius: 0 5px 5px 0;
-            border-width: 1px 1px 1px 0.5px;
+            border-radius: 5px 0 0 5px;
+            border-width: 1px 0px 1px 1px;
           }
         `;
       case "expirationYear":
         return `
           ${StyledField} {
-            border-radius: 5px 0 0 5px;
-            border-width: 1px 0px 1px 1px;
+            border-radius: 0 5px 5px 0;
+            border-width: 1px 1px 1px 0.5px;
           }
         `;
       case "cvv":
