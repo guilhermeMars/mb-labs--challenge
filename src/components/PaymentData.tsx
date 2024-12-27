@@ -10,8 +10,8 @@ interface PaymentDataProps {
 interface PaymentDataErrors {
   cardNumber?: string;
   name?: string;
-  expirationDay?: string;
   expirationMonth?: string;
+  expirationYear?: string;
   cvv?: string;
   numberOfInstallments?: string;
 }
@@ -36,18 +36,18 @@ const FieldDiv = styled.div<{ $fieldType?: string }>`
         return `
           flex: 100%;
         `;
-      case "expirationDay":
-        return `
-          ${StyledField} {
-            border-radius: 5px 0 0 5px;
-            border-width: 1px 0px 1px 1px;
-          }
-        `;
       case "expirationMonth":
         return `
           ${StyledField} {
             border-radius: 0 5px 5px 0;
             border-width: 1px 1px 1px 0.5px;
+          }
+        `;
+      case "expirationYear":
+        return `
+          ${StyledField} {
+            border-radius: 5px 0 0 5px;
+            border-width: 1px 0px 1px 1px;
           }
         `;
       case "cvv":
@@ -114,8 +114,8 @@ export default function PaymentData({ index, onSubmit }: PaymentDataProps) {
   const initialValues: Payment = {
     cardNumber: 0,
     name: "",
-    expirationDay: 0,
     expirationMonth: 0,
+    expirationYear: 0,
     cvv: 0,
     numberOfInstallments: 1,
   };
@@ -164,16 +164,16 @@ export default function PaymentData({ index, onSubmit }: PaymentDataProps) {
           errors.name = "Nome precisa ter mais que 5 letras";
         }
 
-        if (!values.expirationDay) {
-          errors.expirationDay = "Obrigatório";
-        } else if (values.expirationDay > 31 || values.expirationDay < 1) {
-          errors.expirationDay = "Digite um dia válido";
-        }
-
         if (!values.expirationMonth) {
           errors.expirationMonth = "Obrigatório";
         } else if (values.expirationMonth > 12 || values.expirationMonth < 1) {
           errors.expirationMonth = "Digite um mês válido";
+        }
+
+        if (!values.expirationYear) {
+          errors.expirationYear = "Obrigatório";
+        } else if (values.expirationYear > 31 || values.expirationYear < 1) {
+          errors.expirationYear = "Digite um dia válido";
         }
 
         if (!values.cvv) {
@@ -203,15 +203,15 @@ export default function PaymentData({ index, onSubmit }: PaymentDataProps) {
         </FieldDiv>
 
         <MaturityDiv>
-          <FieldDiv $fieldType="expirationDay">
-            <label htmlFor="expirationDay">Dia:</label>
-            <StyledField name="expirationDay" type="number" />
-            <ErrorMessage name="expirationDay" />
-          </FieldDiv>
           <FieldDiv $fieldType="expirationMonth">
             <label htmlFor="expirationMonth">Mês:</label>
             <StyledField name="expirationMonth" type="number" />
             <ErrorMessage name="expirationMonth" />
+          </FieldDiv>
+          <FieldDiv $fieldType="expirationYear">
+            <label htmlFor="expirationYear">Ano:</label>
+            <StyledField name="expirationYear" type="number" />
+            <ErrorMessage name="expirationYear" />
           </FieldDiv>
         </MaturityDiv>
 
